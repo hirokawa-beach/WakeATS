@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>ATS-S ALARM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header-strip">
+    <span class="type-label">車上装置</span>
+    <span class="model-badge">ATS-S</span>
+  </div>
+
+  <div class="panel">
+    <div class="clock-section">
+      <div class="clock-display" id="clock">--:--:--</div>
+      <div class="date-display" id="dateDisp">----.--.--</div>
+    </div>
+
+    <div class="indicator-row">
+      <div class="indicator">
+        <div class="light" id="lightArmed"></div>
+        <div class="indicator-label">ARM<br>待機</div>
+      </div>
+      <div class="indicator">
+        <div class="light" id="lightAlarm"></div>
+        <div class="indicator-label">ALARM<br>警報</div>
+      </div>
+      <div class="indicator">
+        <div class="light" id="lightConf"></div>
+        <div class="indicator-label">CONF<br>確認</div>
+      </div>
+      <div class="indicator">
+        <div class="light" id="lightClear"></div>
+        <div class="indicator-label">CLEAR<br>解除</div>
+      </div>
+    </div>
+
+    <div class="set-section">
+      <div class="section-eyebrow">発報時刻設定</div>
+      <div class="time-row">
+        <div class="time-input-wrap">
+          <input type="time" id="alarmTime">
+        </div>
+        <button class="btn-arm" id="armBtn">設定</button>
+      </div>
+    </div>
+    <div class="set-section" style="border-bottom: 1px solid var(--border);">
+    <div class="section-eyebrow">カスタム音源設定 (WAV/MP3)</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; color: var(--text-mute);">ATSベル音:</span>
+          <label class="btn-solve" style="padding: 4px 12px; height: auto; cursor: pointer; font-size: 11px;">
+            ファイル選択 <input type="file" id="bellFile" accept="audio/*" style="display:none;">
+          </label>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; color: var(--text-mute);">確認チャイム音:</span>
+          <label class="btn-solve" style="padding: 4px 12px; height: auto; cursor: pointer; font-size: 11px;">
+            ファイル選択 <input type="file" id="chimeFile" accept="audio/*" style="display:none;">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-section">
+      <span class="status-label">STATUS</span>
+      <span class="status-value" id="status">待機中</span>
+    </div>
+
+    <div class="alarm-section" id="alarmSection">
+      <div class="alarm-banner">
+        <div class="alarm-dot"></div>
+        <div class="alarm-text">ATS 警報発報中</div>
+      </div>
+      
+      <div class="swipe-wrap" id="swipeBtn">
+        <div class="voice-lock-overlay" id="voiceLock">
+          <span class="voice-text">マイクに歓呼せよ！</span>
+          <div class="voice-meter-bg">
+            <div class="voice-meter-fill" id="voiceLevel"></div>
+          </div>
+        </div>
+        
+        <div class="swipe-thumb" id="swipeThumb">→</div>
+        <div class="swipe-label">スワイプして確認</div>
+      </div>
+    </div>
+
+    <div class="math-section" id="mathSection">
+      <div class="math-prompt-label">解除コード — 計算問題に答えよ</div>
+      <div class="math-question" id="question">?? + ?? = ?</div>
+      <div class="math-input-row">
+        <input type="number" class="math-input" id="mathAnswer" inputmode="numeric" pattern="[0-9]*" placeholder="答え">
+        <button class="btn-solve" id="solveBtn">解除</button>
+      </div>
+    </div>
+
+    <div class="clear-section" id="clearSection">
+      <div class="clear-dot"></div>
+      <div class="clear-label">ATS 解除</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-label">ATS ALARM v3</span>
+    <span class="footer-label" id="footerSet">未設定</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
